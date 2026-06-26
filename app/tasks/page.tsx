@@ -7,6 +7,7 @@ import { Sidebar } from '@/components/sidebar';
 import { Navbar } from '@/components/navbar';
 import { Banner } from '@/components/banner';
 import { Breadcrumb } from '@/components/breadcrumb';
+import { ConfirmationDialog } from '@/components/confirmation-dialog';
 import { api, Task, User } from '@/lib/api';
 import { toast } from 'sonner';
 import {
@@ -54,6 +55,9 @@ export default function TasksPage() {
   const [editDueDate, setEditDueDate] = useState('');
   const [editAssignedTo, setEditAssignedTo] = useState<string>('none');
   const [submittingEdit, setSubmittingEdit] = useState(false);
+
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [taskToDelete, setTaskToDelete] = useState<Task | null>(null);
 
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
@@ -219,12 +223,19 @@ export default function TasksPage() {
     }
   };
 
-  const handleDeleteTask = async (taskId: string) => {
-    if (!confirm('Are you sure you want to delete this task?')) return;
+  const openDeleteDialog = (task: Task) => {
+    setTaskToDelete(task);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleDeleteTask = async () => {
+    if (!taskToDelete) return;
     try {
-      const response = await api.delete<{ success: boolean }>(`/tasks/${taskId}`);
+      const response = await api.delete<{ success: boolean }>(`/tasks/${taskToDelete._id}`);
       if (response.success) {
         toast.success('Task deleted successfully');
+        setDeleteDialogOpen(false);
+        setTaskToDelete(null);
         fetchTasks();
       }
     } catch (error: any) {
@@ -473,7 +484,7 @@ export default function TasksPage() {
                               </button>
                               {canDelete && (
                                 <button
-                                  onClick={() => handleDeleteTask(task._id)}
+                                  onClick={() => openDeleteDialog(task)}
                                   className="w-8 h-8 rounded-lg border-[1.5px] border-red-100 bg-red-50/30 hover:bg-red-50 text-red-500 flex items-center justify-center cursor-pointer transition-colors"
                                   title="Delete Task"
                                 >
@@ -709,6 +720,18 @@ export default function TasksPage() {
           </form>
         </DialogContent>
       </Dialog>
+
+      <ConfirmationDialog
+        isOpen={deleteDialogOpen}
+        onClose={() => {
+          setDeleteDialogOpen(false);
+          setTaskToDelete(null);
+        }}
+        onConfirm={handleDeleteTask}
+        title="Delete Task"
+        description={`Are you sure you want to delete ${taskToDelete?.title || 'this task'}? This action cannot be undone.`}
+        confirmText="Delete"
+      />
 
     </div>
   );
