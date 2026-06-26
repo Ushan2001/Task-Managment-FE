@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/components/auth-context';
 import { toast } from 'sonner';
-import { Layers } from 'lucide-react';
 
 interface SidebarProps {
   onExpandChange?: (expanded: boolean) => void;
@@ -116,12 +115,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ onExpandChange }) => {
               className="flex items-center gap-2 cursor-pointer overflow-hidden shrink-0"
               onClick={() => router.push('/dashboard')}
             >
-              <div className="p-1.5 rounded-lg bg-brand text-white flex items-center justify-center shadow-md shadow-brand/10">
-                <Layers size={16} className="stroke-[2.5]" />
-              </div>
-              <span className="font-extrabold text-[16px] tracking-wider text-[#231F20] font-sans">
-                ApexFlow
-              </span>
+              <img
+                src="/assets/images/SVG/Black.svg"
+                alt="ApexFlow logo"
+                className="h-5 w-auto"
+              />
             </div>
           )}
           

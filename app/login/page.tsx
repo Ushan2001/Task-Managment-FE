@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/auth-context';
 import { toast } from 'sonner';
-import { Layers, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { AuthLeftPanel } from '@/components/auth-left-panel';
 
 export default function LoginPage() {
@@ -117,13 +117,12 @@ export default function LoginPage() {
 
           {/* Logo container */}
           <div className="flex justify-center items-center">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-brand text-white flex items-center justify-center shadow-lg shadow-brand/20">
-                <Layers size={24} className="stroke-[2.5]" />
-              </div>
-              <span className="font-extrabold text-2xl tracking-wider text-[#231F20] font-sans">
-                ApexFlow
-              </span>
+            <div className="flex items-center">
+              <img
+                src="/assets/images/SVG/Black.svg"
+                alt="ApexFlow logo"
+                className="h-8 w-auto"
+              />
             </div>
           </div>
 

@@ -6,6 +6,11 @@ import { AuthProvider } from "@/components/auth-context"
 import { Toaster } from "sonner"
 import { cn } from "@/lib/utils";
 
+export const metadata = {
+  title: "Task Management System",
+  description: "Task Management System for dashboard and task tracking",
+}
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],

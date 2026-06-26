@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { Layers } from 'lucide-react';
 
 interface AuthLeftPanelProps {
   termsText?: React.ReactNode;
@@ -32,14 +31,13 @@ export const AuthLeftPanel: React.FC<AuthLeftPanelProps> = ({
 
       {/* Top Overlay Content */}
       <div className="absolute top-16 left-12 z-2 text-white max-w-[80%] space-y-4">
-        {/* White brand logo replacement */}
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-white text-brand flex items-center justify-center shadow-lg shadow-brand/20">
-            <Layers size={24} className="stroke-[2.5]" />
-          </div>
-          <span className="font-extrabold text-2xl tracking-wider text-white font-sans">
-            ApexFlow
-          </span>
+        {/* White brand logo icon only */}
+        <div className="flex items-center">
+          <img
+            src="/assets/images/SVG/white.svg"
+            alt="ApexFlow logo"
+            className="h-8 w-auto drop-shadow-[0_8px_18px_rgba(0,0,0,0.35)]"
+          />
         </div>
 
         <p className="text-[14px] xl:text-[15px] leading-relaxed font-normal opacity-95">
