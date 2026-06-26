@@ -128,9 +128,6 @@ export default function LoginPage() {
 
           {/* Form Header */}
           <div className="text-center space-y-2">
-            <h1 className="text-[26px] sm:text-[28px] font-bold text-[#231F20] font-sans">
-              Admin Workspace Panel
-            </h1>
             <p className="text-[14px] text-[#9B9B9B] leading-relaxed">
               Login to manage tasks, collaborators, and workspace operations efficiently.
             </p>
